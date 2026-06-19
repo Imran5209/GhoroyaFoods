@@ -18,6 +18,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
+        if (window.location.hash) {
+            window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+    </script>
+
+    <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -27,7 +33,7 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         
-        fbq('init', 'YOUR_PIXEL_ID'); // Replace with your real ID
+        fbq('init', 'YOUR_PIXEL_ID');
         fbq('track', 'PageView');
     </script>
 
@@ -40,6 +46,23 @@
         .bg-accent { background-color: #e5a924; }
         .bg-accent-hover { background-color: #ca921c; }
         html { scroll-behavior: smooth; }
+        
+        .review-img-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; 
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .review-img-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 overflow-x-hidden">
@@ -59,7 +82,7 @@
             <div data-aos="fade-right">
                 <span class="text-xs bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full uppercase"><i class="fas fa-shield-halved mr-1"></i> ১০০% কেমিক্যাল মুক্ত ঘরোয়া আচার</span>
                 <h1 class="text-4xl md:text-6xl font-bold color-primary mt-4 leading-tight">জিভে জল আনা খাঁটি <br><span class="color-accent">মুখরোচক আচার</span></h1>
-                <p class="text-gray-600 mt-6 text-base md:text-lg">সম্পূর্ণ হাইজেনিক পরিবেশে রোদে শুকিয়ে তৈরি আমাদের আচার। কম্বো প্যাকেজে কিনলেই পাচ্ছেন বিশেষ ধামাকা মূল্যছাড়!</p>
+                <p class="text-gray-600 mt-6 text-base md:text-lg">সম্পূর্ণ হাইজেনিক পরিবেশে রোদে শুকিয়ে তৈরি আমাদের আচার। কম্বো যুগে কিনলেই পাচ্ছেন বিশেষ ধামাকা মূল্যছাড়!</p>
                 <div class="mt-8 flex flex-wrap gap-4">
                     <button onclick="openOrderPopup('ধামাকা কম্বো প্যাক')" class="bg-primary hover:bg-primary-hover text-white text-base md:text-lg font-bold px-8 py-4 rounded-full shadow-lg transition transform hover:scale-105"><i class="fas fa-shopping-basket mr-2"></i> কম্বো কিনুন (Buy Now)</button>
                     <a href="#products" class="bg-white border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white text-base md:text-lg font-bold px-8 py-4 rounded-full transition text-center">আলাদা আচার সমূহ</a>
@@ -85,10 +108,10 @@
                     <div>
                         <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Combo Pack</span>
                         <h3 class="text-2xl md:text-4xl font-bold mt-4">ধামাকা কম্বো অফার প্যাক</h3>
-                        <p class="text-green-200/90 text-sm md:text-base mt-2">তেঁতুল রসুনের মিক্স আচার + কাঁচা আমের আচার একসাথে কিনলেই পাচ্ছেন বিশাল ছাড়।</p>
+                        <p class="text-green-200/90 text-sm md:text-base mt-2">তেঁতুল রসুনের মিক্স আচার (১ কেজি) + কাঁচা আমের আচার (১ কেজি) একসাথে কিনলেই পাচ্ছেন বিশাল ছাড়।</p>
                         <div class="flex items-baseline space-x-2 my-6">
-                            <span class="text-4xl md:text-5xl font-bold color-accent">৳৪৯৯</span>
-                            <span class="text-lg text-green-300/70 line-through">৳৫৯৯</span>
+                            <span class="text-4xl md:text-5xl font-bold color-accent">৳৯৯৯</span>
+                            <span class="text-lg text-green-300/70 line-through">৳১০৯৮</span>
                         </div>
                         <button onclick="openOrderPopup('ধামাকা কম্বো প্যাক')" class="w-full bg-accent hover:bg-accent-hover text-white font-bold py-4 rounded-xl shadow-lg transition text-center"><i class="fas fa-shopping-cart mr-2"></i> কম্বো অর্ডার করুন (Buy Now)</button>
                     </div>
@@ -103,7 +126,7 @@
     <section id="products" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold color-primary">আমাদের একক আচারসমূহ (Single Items)</h2>
+                <h2 class="text-3xl font-bold color-primary">আমাদের একক আচারসমূহ (১ কেজি প্যাক)</h2>
                 <div class="h-1 w-20 bg-accent mx-auto mt-3 rounded"></div>
             </div>
 
@@ -114,7 +137,7 @@
                         <h3 class="text-xl font-bold color-primary">প্রিমিয়াম তেঁতুল রসুনের মিক্স আচার</h3>
                         <p class="text-gray-500 text-sm mt-2">টক-ঝাল-মিষ্টির এক অপূর্ব ব্যালেন্স যা মুখের রুচি ফিরিয়ে আনবে নিশ্চিত।</p>
                         <div class="flex justify-between items-center mt-6">
-                            <span class="text-2xl font-bold text-green-800">৳২৯৯ <span class="text-xs text-gray-400">/ ৫০০ গ্রাম</span></span>
+                            <span class="text-2xl font-bold text-green-800">৳৫৯৯ <span class="text-xs text-gray-400">/ ১ কেজি</span></span>
                             <button onclick="openOrderPopup('তেঁতুল রসুনের মিক্স আচার')" class="bg-accent hover:bg-accent-hover text-white font-bold px-6 py-2.5 rounded-full transition shadow">Buy Now</button>
                         </div>
                     </div>
@@ -126,9 +149,45 @@
                         <h3 class="text-xl font-bold color-primary">ঐতিহ্যবাহী খাঁটি কাঁচা আমের আচার</h3>
                         <p class="text-gray-500 text-sm mt-2">খাঁটি সরিষার তেলে জারিত ঐতিহ্যবাহী মশলাদার কাঁচা আমের টুকরো আচার।</p>
                         <div class="flex justify-between items-center mt-6">
-                            <span class="text-2xl font-bold text-green-800">৳২৯৯ <span class="text-xs text-gray-400">/ ৫০০ গ্রাম</span></span>
+                            <span class="text-2xl font-bold text-green-800">৳৪৯৯ <span class="text-xs text-gray-400">/ ১ কেজি</span></span>
                             <button onclick="openOrderPopup('কাঁচা আমের আচার')" class="bg-accent hover:bg-accent-hover text-white font-bold px-6 py-2.5 rounded-full transition shadow">Buy Now</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews-section" class="py-16 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded-full uppercase"><i class="fas fa-star mr-1"></i> কাস্টমার ফিডব্যাক</span>
+                <h2 class="text-3xl font-bold color-primary mt-2">আমাদের আচারের প্রতি ক্রেতাদের ভালোবাসা</h2>
+                <div class="h-1 w-20 bg-accent mx-auto mt-3 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="bg-gray-50 p-2 rounded-2xl border border-gray-200 shadow-sm transition transform hover:scale-[1.03] duration-300" data-aos="zoom-in">
+                    <div class="review-img-container">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-mo5lIS37KqMU6h9jpB3YopJf4FwU1dx7DbVGPFi4XFiAiEkOJD3yXX9vBstUhpobn_A32AsM6W8jgK2b8HDHro2pEna6xfmtAzYe23ccg4twUPA7gWlpUSj6LKOD-kPFK4u4XBgGcr-tmRhVwewlpyc-QFFGFvC3K3K9jv3ONPO5qnwDYV_6KssbURk3/s1080/r3.jpeg" alt="Customer Review 1" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-2 rounded-2xl border border-gray-200 shadow-sm transition transform hover:scale-[1.03] duration-300" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="review-img-container">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitCqdTKU0qt0zYn9K7eX6CW4_zcKyl7pasx9Ppq-BZjVwS8YHulAfkVovToarLDmifLF3ZDkccUVBUgAgL_r6l46ZBr2TD_GiM3AabKeLezAghCbuMrLLTf8nHATUdLIFiTHpxyraEIicxeEC2h3wJbNN-srTqUlOea6NTLAAoO5iARdpKnHVOtUr26yUa/s2560/r1.jpeg" alt="Customer Review 2" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-2 rounded-2xl border border-gray-200 shadow-sm transition transform hover:scale-[1.03] duration-300" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="review-img-container">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEbGWRsjbKyT3p7kL_ZSb9_3j3RUMDoeotePcKatc1gvN1E8yv8sjhHSSAKyj_7Rj4sD8v12LgofJ1kxcWeRDs1iUoMwI4FmMNW0s67Yuoh9Ysfh-mNN35Q1hn3TNIYBp9Dy0UDd0wtgeRtQWjrvg6XSnhH5bsbXMPHJoXxmmdDTGshTcm1kjLKus7LVHK/s1486/r4.png" alt="Customer Review 3" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-2 rounded-2xl border border-gray-200 shadow-sm transition transform hover:scale-[1.03] duration-300" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="review-img-container">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhei9pj3F39RtJYU_hVWNKkR786M6qHmiI-DDLwHQyhq6ApUDWK_57wfYfc36UPjGimWO5rP2NZxYXd8V0YhozBagYRaIfFmjn40He6F6s8tsFLuC7WqhM7_yPKRN2iNOlnCREI29NwBwGJK-gV9xs_6VkIJxf01JtCYGbkr5wSuZ2Ud_xLDanazCriDfUv/s1080/r5.png" alt="Customer Review 4" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -138,11 +197,14 @@
     <section id="track-section" class="py-16 bg-white border-t border-gray-100">
         <div class="container mx-auto px-4 max-w-xl text-center">
             <h2 class="text-2xl font-bold color-primary mb-2">আপনার অর্ডার ট্র্যাক করুন</h2>
+            <p class="text-xs text-gray-500 mb-4">অর্ডার আইডি (যেমন: GF123456) অথবা ১১ ডিজিটের মোবাইল নাম্বার দিন</p>
             <div class="flex shadow-sm rounded-xl overflow-hidden border border-gray-300">
                 <input type="text" id="trackInput" placeholder="Order ID / Mobile Number..." class="w-full px-4 py-3 focus:outline-none text-sm">
-                <button onclick="trackOrder()" class="bg-primary text-white px-6 font-bold hover:bg-primary-hover transition">ট্র্যাক</button>
+                <button id="trackBtn" onclick="trackOrder()" class="bg-primary text-white px-6 font-bold hover:bg-primary-hover transition flex items-center justify-center min-w-[90px]">
+                    <span id="trackBtnText">ট্র্যাক</span>
+                </button>
             </div>
-            <div id="trackResult" class="mt-4 p-4 rounded-xl text-sm font-medium hidden"></div>
+            <div id="trackResult" class="mt-4 p-4 rounded-xl text-sm font-medium hidden text-left shadow-sm border"></div>
         </div>
     </section>
 
@@ -164,10 +226,10 @@
             <form id="googleOrderForm" onsubmit="handleFormSubmit(event)" class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
                 <div>
                     <label class="block text-gray-700 font-bold mb-1 text-sm">নির্বাচিত প্রোডাক্ট *</label>
-                    <select id="formProduct" name="entry.111111111" onchange="onProductChange()" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none">
-                        <option value="ধামাকা কম্বো প্যাক" data-price="499" data-unit="কম্বো প্যাক">ধামাকা কম্বো প্যাক (তেঁতুল-রসুন + কাঁচা আম) - ৳৪৯৯</option>
-                        <option value="তেঁতুল রসুনের মিক্স আচার" data-price="299" data-unit="পিস">প্রিমিয়াম তেঁতুল রসুনের মিক্স আচার - ৳২৯৯</option>
-                        <option value="কাঁচা আমের আচার" data-price="299" data-unit="পিস">ঐতিহ্যবাহী খাঁটি কাঁচা আমের আচার - ৳২৯৯</option>
+                    <select id="formProduct" onchange="onProductChange()" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none">
+                        <option value="ধামাকা কম্বো প্যাক" data-price="999" data-unit="কম্বো প্যাক (২ কেজি)">ধামাকা কম্বো প্যাক (তেঁতুল-রসুন ১ কেজি + কাঁচা আম ১ কেজি) - ৳৯৯৯</option>
+                        <option value="তেঁতুল রসুনের মিক্স আচার" data-price="599" data-unit="১ কেজি প্যাক">প্রিমিয়াম তেঁতুল রসুনের মিক্স আচার (১ কেজি) - ৳৫৯৯</option>
+                        <option value="কাঁচা আমের আচার" data-price="499" data-unit="১ কেজি প্যাক">ঐতিহ্যবাহী খাঁটি কাঁচা আমের আচার (১ কেজি) - ৳৪৯৯</option>
                     </select>
                 </div>
 
@@ -179,42 +241,41 @@
                             <input type="text" id="formQtyDisplay" readonly value="1" class="w-12 text-center bg-transparent font-bold text-sm">
                             <button type="button" onclick="adjustQty(1)" class="px-3 py-2 bg-gray-200 font-bold text-lg">+</button>
                         </div>
-                        <span id="unitBadge" class="bg-green-100 text-green-800 font-bold text-xs px-3 py-2 rounded-lg border border-green-200">কম্বো প্যাক</span>
+                        <span id="unitBadge" class="bg-green-100 text-green-800 font-bold text-xs px-3 py-2 rounded-lg border border-green-200">কম্বো প্যাক (২ কেজি)</span>
                     </div>
-                    <input type="hidden" id="formQuantity" name="entry.222222222" value="1">
                 </div>
 
                 <div>
                     <label class="block text-gray-700 font-bold mb-1 text-sm">কাস্টমারের নাম *</label>
-                    <input type="text" id="inputName" name="entry.333333333" placeholder="আপনার নাম লিখুন" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                    <input type="text" id="inputName" placeholder="আপনার নাম লিখুন" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                 </div>
 
                 <div>
                     <label class="block text-gray-700 font-bold mb-1 text-sm">ফোন নম্বর *</label>
-                    <input type="tel" id="inputPhone" name="entry.444444444" placeholder="১১ ডিজিটের মোবাইল নম্বর" required pattern="[0-9]{11}" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                    <input type="tel" id="inputPhone" placeholder="১১ ডিজিটের মোবাইল নম্বর" required pattern="[0-9]{11}" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                 </div>
 
                 <div class="space-y-3">
                     <div>
                         <label class="block text-gray-700 font-bold mb-1 text-sm">সম্পূর্ণ ঠিকানা (গ্রাম/রোড/বাসা) *</label>
-                        <textarea id="inputFullAddress" name="entry.555555554" rows="2" placeholder="বিস্তারিত ঠিকানা দিন" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"></textarea>
+                        <textarea id="inputFullAddress" rows="2" placeholder="বিস্তারিত ঠিকানা দিন" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"></textarea>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block text-gray-700 font-bold mb-1 text-sm">থানা / উপজেলা *</label>
-                            <input type="text" id="inputUpazila" name="entry.555555552" placeholder="উপজেলা" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                            <input type="text" id="inputUpazila" placeholder="উপজেলা" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                         </div>
                         <div>
                             <label class="block text-gray-700 font-bold mb-1 text-sm">জেলা *</label>
-                            <input type="text" id="inputZilla" name="entry.555555551" placeholder="জেলা" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                            <input type="text" id="inputZilla" placeholder="জেলা" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block text-gray-700 font-bold mb-1 text-sm">পোস্ট কোড</label>
-                            <input type="text" id="inputPostCode" name="entry.555555553" placeholder="কোড" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                            <input type="text" id="inputPostCode" placeholder="কোড" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                         </div>
                         <div>
                             <label class="block text-gray-700 font-bold mb-1 text-sm">দেশ</label>
@@ -227,12 +288,12 @@
                     <label class="block text-gray-700 font-bold mb-1 text-sm">ডেলিভারি এরিয়া *</label>
                     <div class="grid grid-cols-2 gap-3 mt-1">
                         <label class="border p-2.5 rounded-lg flex items-center justify-between cursor-pointer text-xs font-bold">
-                            <span>ঢাকার ভিতরে (৳৮ো)</span>
-                            <input type="radio" name="entry.666666666" value="ঢাকার ভিতরে" checked onclick="updateCharge(80)">
+                            <span>ঢাকার ভিতরে (৳৮০)</span>
+                            <input type="radio" name="delArea" value="ঢাকার ভিতরে" checked onclick="updateCharge(80)">
                         </label>
                         <label class="border p-2.5 rounded-lg flex items-center justify-between cursor-pointer text-xs font-bold">
                             <span>ঢাকার বাহিরে (৳১০০)</span>
-                            <input type="radio" name="entry.666666666" value="ঢাকার বাহিরে" onclick="updateCharge(100)">
+                            <input type="radio" name="delArea" value="ঢাকার বাহিরে" onclick="updateCharge(100)">
                         </label>
                     </div>
                 </div>
@@ -242,7 +303,9 @@
                     <span id="priceDisplay" class="text-base text-green-800">৳0</span>
                 </div>
 
-                <button type="submit" class="w-full bg-accent hover:bg-accent-hover text-white text-base font-bold py-3.5 rounded-xl shadow-lg transition"><i class="fas fa-check-circle mr-2"></i> অর্ডার কনফার্ম করুন</button>
+                <button type="submit" id="submitOrderBtn" class="w-full bg-accent hover:bg-accent-hover text-white text-base font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center">
+                    <span id="submitOrderBtnText"><i class="fas fa-check-circle mr-2"></i> অর্ডার কনফার্ম করুন</span>
+                </button>
             </form>
         </div>
     </div>
@@ -259,7 +322,7 @@
 
                 <div class="space-y-2 text-xs text-gray-700">
                     <div class="flex justify-between font-bold text-gray-900 border-b pb-1">
-                        <span>অর্ডার আইডি:</span>
+                        <span>অर्डर আইডি:</span>
                         <span id="summaryID" class="text-green-800">#--</span>
                     </div>
                     <div class="grid grid-cols-3">
@@ -323,26 +386,27 @@
     <script>
         AOS.init({ once: true, duration: 800 });
 
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzg-i47aXy4r5zu5DCgnpr2fRI0hHK_j0YJ23gr4pWgHsj3-MBOGIZnSORdRU4Re3vh/exec";
+
+        // TELEGRAM BOT CONFIGURATION (FILLED UP)
+        const TELEGRAM_BOT_TOKEN = "8314070464:AAElOxWfqPLduPyZ5vRAO9-CqhAd6JxVQKU"; 
+        const TELEGRAM_CHAT_ID = "8639241045";     
+
         const popup = document.getElementById('orderPopup');
         const successPopup = document.getElementById('successPopup');
         const formProduct = document.getElementById('formProduct');
         const formQtyDisplay = document.getElementById('formQtyDisplay');
-        const formQuantityHidden = document.getElementById('formQuantity');
         const unitBadge = document.getElementById('unitBadge');
         const priceDisplay = document.getElementById('priceDisplay');
 
         let currentCharge = 80;
         let qty = 1;
 
-        // Correctly selects matching values on buy click automatically
         function openOrderPopup(productName) {
             popup.classList.remove('hidden');
             formProduct.value = productName; 
-            
             qty = 1;
             formQtyDisplay.value = qty;
-            formQuantityHidden.value = qty;
-            
             onProductChange();
             
             setTimeout(() => {
@@ -369,7 +433,6 @@
             qty += amount;
             if (qty < 1) qty = 1;
             formQtyDisplay.value = qty;
-            formQuantityHidden.value = qty;
             calculateTotal();
         }
 
@@ -387,7 +450,12 @@
         function handleFormSubmit(event) {
             event.preventDefault();
 
-            // Extraction values for the printable receipt schema card
+            const submitBtn = document.getElementById('submitOrderBtn');
+            const submitBtnText = document.getElementById('submitOrderBtnText');
+            
+            submitBtn.disabled = true;
+            submitBtnText.innerHTML = '<i class="fas fa-spinner animate-spin mr-2"></i> অর্ডার প্রসেস হচ্ছে...';
+
             const randID = 'GF' + Math.floor(100000 + Math.random() * 900000);
             const selectedOption = formProduct.options[formProduct.selectedIndex];
             const basePrice = parseInt(selectedOption.getAttribute('data-price'));
@@ -400,29 +468,82 @@
             const zilla = document.getElementById('inputZilla').value;
             const post = document.getElementById('inputPostCode').value;
             const country = document.getElementById('inputCountry').value;
+            const delArea = document.querySelector('input[name="delArea"]:checked').value;
 
-            // Mapping exact fields sequentially inside receipt DOM elements
-            document.getElementById('summaryID').innerText = '#' + randID;
-            document.getElementById('summaryName').innerText = name;
-            document.getElementById('summaryPhone').innerText = phone;
-            document.getElementById('summaryAddressCombined').innerText = `${fullAddr}, ${upazila}, ${zilla}, ${post ? post + ', ' : ''}${country}`;
-            
-            document.getElementById('summaryProduct').innerText = selectedOption.value;
-            document.getElementById('summaryQty').innerText = qty + ' ' + unitBadge.innerText;
-            document.getElementById('summaryCharge').innerText = '৳' + currentCharge;
-            document.getElementById('summaryTotal').innerText = '৳' + totalPrice;
+            const addressCombined = `${fullAddr}, ${upazila}, ${zilla}, ${post ? post + ', ' : ''}${country}`;
 
-            closeOrderPopup();
-            setTimeout(() => successPopup.classList.remove('hidden'), 400);
+            const formData = new URLSearchParams();
+            formData.append('OrderID', randID);
+            formData.append('Name', name);
+            formData.append('Phone', phone);
+            formData.append('Product', selectedOption.value);
+            formData.append('Quantity', qty + ' ' + unitBadge.innerText);
+            formData.append('Address', addressCombined);
+            formData.append('DeliveryArea', delArea);
+            formData.append('TotalPrice', '৳' + totalPrice);
+
+            fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.result === "success") {
+                    
+                    const telegramText = `🛍️ *নতুন অর্ডার এসেছে!* (Ghoroya Foods)\n\n` +
+                                         `🆔 *অর্ডার আইডি:* #${randID}\n` +
+                                         `👤 *নাম:* ${name}\n` +
+                                         `📞 *মোবাইল:* ${phone}\n` +
+                                         `📦 *প্রোডাক্ট:* ${selectedOption.value}\n` +
+                                         `🔢 *পরিমাণ:* ${qty} ${unitBadge.innerText}\n` +
+                                         `📍 *ঠিকানা:* ${addressCombined}\n` +
+                                         `🚚 *ডেলিভারি এরিয়া:* ${delArea}\n` +
+                                         `💵 *সর্বমোট মূল্য:* ৳${totalPrice}`;
+
+                    fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: telegramText,
+                            parse_mode: 'Markdown'
+                        })
+                    }).catch(tErr => console.error('Telegram error:', tErr));
+
+                    document.getElementById('summaryID').innerText = '#' + randID;
+                    document.getElementById('summaryName').innerText = name;
+                    document.getElementById('summaryPhone').innerText = phone;
+                    document.getElementById('summaryAddressCombined').innerText = addressCombined;
+                    
+                    document.getElementById('summaryProduct').innerText = selectedOption.value;
+                    document.getElementById('summaryQty').innerText = qty + ' ' + unitBadge.innerText;
+                    document.getElementById('summaryCharge').innerText = '৳' + currentCharge;
+                    document.getElementById('summaryTotal').innerText = '৳' + totalPrice;
+
+                    closeOrderPopup();
+                    setTimeout(() => successPopup.classList.remove('hidden'), 400);
+                } else {
+                    alert('অর্ডার সাবমিট করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+                }
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('Network Error! অনুগ্রহ করে আপনার ইন্টারনেট কানেকশন চেক করুন।');
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtnText.innerHTML = '<i class="fas fa-check-circle mr-2"></i> অর্ডার কনফার্ম করুন';
+            });
         }
 
-        // HTML2CANVAS Image compilation trigger engine module
         function downloadReceiptImage() {
             const container = document.getElementById('receiptCaptureArea');
-            
             html2canvas(container, {
                 useCORS: true,
-                scale: 2, // Enhances pixel densities for premium sharpness quality
+                scale: 2, 
                 backgroundColor: "#ffffff"
             }).then(canvas => {
                 const link = document.createElement('a');
@@ -440,15 +561,69 @@
         function trackOrder() {
             const val = document.getElementById('trackInput').value.trim();
             const res = document.getElementById('trackResult');
-            res.classList.remove('hidden', 'bg-red-50', 'text-red-800', 'bg-green-50', 'text-green-800');
+            const trackBtnText = document.getElementById('trackBtnText');
+            const trackBtn = document.getElementById('trackBtn');
+            
+            res.classList.add('hidden');
+            res.classList.remove('bg-red-50', 'text-red-800', 'border-red-200', 'bg-green-50', 'text-green-800', 'border-green-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
             
             if(!val) {
-                res.innerText = "দয়া করে সঠিক অর্ডার আইডি বা মোবাইল নাম্বার ইনপুট করুন।";
-                res.classList.add('bg-red-50', 'text-red-800');
+                res.innerText = "✖ দয়া করে সঠিক অর্ডার আইডি বা মোবাইল নাম্বার ইনপুট করুন।";
+                res.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
+                res.classList.remove('hidden');
                 return;
             }
-            res.innerText = "আপনার অর্ডারটি প্রসেসিং-এ রয়েছে। আমাদের প্রতিনিধি খুব শীঘ্রই আপনার ঠিকানায় পাঠাবে।";
-            res.classList.add('bg-green-50', 'text-green-800');
+
+            trackBtn.disabled = true;
+            trackBtnText.innerHTML = '<i class="fas fa-spinner animate-spin"></i>';
+
+            let queryParam = val.toUpperCase().startsWith('GF') ? `id=${val}` : `phone=${val}`;
+
+            fetch(`${APPS_SCRIPT_URL}?${queryParam}`)
+            .then(response => response.json())
+            .then(data => {
+                res.classList.remove('hidden');
+                if (data.result === "found") {
+                    let statusColor = "text-amber-600 bg-amber-100";
+                    if(data.status.toLowerCase() === 'delivered' || data.status === 'ডেলিভার্ড') statusColor = "text-green-700 bg-green-100";
+                    if(data.status.toLowerCase() === 'cancelled' || data.status === 'বাতিল') statusColor = "text-red-700 bg-red-100";
+
+                    let htmlOutput = `
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center border-b pb-2">
+                                <span class="font-bold text-gray-700">অর্ডার আইডি: #${data.orderId}</span>
+                                <span class="text-xs font-bold px-2.5 py-1 rounded-full ${statusColor}">${data.status}</span>
+                            </div>
+                            <p class="text-gray-600 mt-1"><i class="fas fa-info-circle mr-1 text-primary"></i> <strong>স্ট্যাটাস:</strong> আপনার অর্ডারটি বর্তমানে <span class="underline font-bold text-gray-900">${data.status}</span> অবস্থায় আছে।</p>
+                    `;
+
+                    if (data.note && data.note.trim() !== "") {
+                        htmlOutput += `
+                            <div class="bg-amber-50 border border-amber-200 rounded-lg p-2.5 mt-2 text-xs text-amber-900">
+                                <strong><i class="fas fa-sticky-note mr-1"></i> আমাদের নোট:</strong> ${data.note}
+                            </div>
+                        `;
+                    }
+
+                    htmlOutput += `</div>`;
+                    res.innerHTML = htmlOutput;
+                    res.classList.add('bg-green-50', 'border-green-100');
+
+                } else {
+                    res.innerText = "✖ দুঃখিত! এই আইডি বা মোবাইল নাম্বারে কোনো অর্ডার খুঁজে পাওয়া যায়নি। অনুগ্রহ করে সঠিক তথ্য দিন।";
+                    res.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                res.innerText = "✖ সার্ভার কানেকশন ত্রুটি! অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।";
+                res.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
+                res.classList.remove('hidden');
+            })
+            .finally(() => {
+                trackBtn.disabled = false;
+                trackBtnText.innerText = 'ট্র্যাক';
+            });
         }
     </script>
 </body>
